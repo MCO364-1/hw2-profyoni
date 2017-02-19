@@ -7,7 +7,7 @@ package mco364;
 public class SummationThread extends Thread {
     
     // the entry point of a thread is run
-    final int LOOP_MAX = 10_000_000;
+    final static public int LOOP_MAX = 10_000_000;
     int instanceCounter;
     static int sharedCounter;
 

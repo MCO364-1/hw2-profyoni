@@ -17,7 +17,7 @@ public class SummationThreadTest {
             assertEquals(SummationThread.LOOP_MAX, t.instanceCounter);
         }
 
-       // assertEquals(SummationThread.LOOP_MAX * threads.size(), SummationThread.sharedCounter);
+       assertTrue(SummationThread.LOOP_MAX * threads.size() >= SummationThread.sharedCounter);
     }
 
 }

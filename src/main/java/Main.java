@@ -7,23 +7,24 @@ import javax.swing.JOptionPane;
 
 class MyThread extends Thread {    // the entry point of a thread is run
 
-    final int LOOP_MAX = 1000000;
-    int instanceCouter;
+    final int LOOP_MAX = 10_000_000;
+    int instanceCounter;
     static int sharedCounter;
 
     @Override
     public void run() {
         for (int i = 0; i < LOOP_MAX; i++) {
-            instanceCouter++;
-            synchronized("BathroomKey"){ // only one thread may enter at a time
+            instanceCounter++;
+            //   synchronized ("lock") { // with no locking protecting the critical section, we have a race condition
             MyThread.sharedCounter++;
-            }
-            //System.out.println("T2: " + i);
-            //Main.threadSleep(100);
         }
     }
+}
+
+
 
 }
+
 
 public class Main {
 
@@ -35,19 +36,30 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
-
+    
+    public static ArrayList<MyThread>  computeSums() {
         ArrayList<MyThread> threadList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             MyThread t = new MyThread();
             threadList.add(t);
             t.start();
         }
-        Main.threadSleep(1000);
-        
-        for(MyThread t : threadList){
-            System.out.println(t.instanceCouter + ", " + t.sharedCounter);
+        for (MyThread t : threadList) {
+            try {
+                t.join();
+            } catch (InterruptedException ex) {
+            }
         }
-        
+        return threadList;
+    }
+    
+
+    public static void main(String[] args) {
+ 
+        ArrayList<MyThread>  threadList = computeSums();
+        for (MyThread t : threadList) {
+            System.out.println(t.instanceCounter + ", " + t.sharedCounter);
+        }
+
     }
 }

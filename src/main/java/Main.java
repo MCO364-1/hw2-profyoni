@@ -22,10 +22,6 @@ class MyThread extends Thread {    // the entry point of a thread is run
 }
 
 
-
-}
-
-
 public class Main {
 
     public static void threadSleep(int ms) {
@@ -60,6 +56,5 @@ public class Main {
         for (MyThread t : threadList) {
             System.out.println(t.instanceCounter + ", " + t.sharedCounter);
         }
-
     }
 }

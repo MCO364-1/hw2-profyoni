@@ -10,3 +10,7 @@ and ...
 4.  Create a unit test that confirms that the static variable total equals a number between 99,999,000 and 100,000,000
 5. Write in a comment at the top of your program why the grand total may not always equal 100,000,000
 6. Add Travis link as in last homework
+
+
+
+[![Build Status](https://travis-ci.org/MCO364-1/hw2-profyoni.svg?branch=master)](https://travis-ci.org/MCO364-1/hw2-profyoni)
